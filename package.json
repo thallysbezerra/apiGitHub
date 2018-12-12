@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "connect": "~3.6.6",
+    "gulp-uglifycss": "^1.1.0",
     "serve-static": "~1.13.2"
   },
   "scripts": {
@@ -14,5 +15,11 @@
     "type": "git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglifycss": "^1.1.0"
+  }
 }

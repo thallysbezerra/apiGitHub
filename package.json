@@ -1,0 +1,18 @@
+{
+  "name": "apiGitHub",
+  "version": "1.0.0",
+  "description": "Aplicação client-side, que consulte a API do GitHub e mostra os repositórios mais populares de um determinado usuário.",
+  "main": "app.js",
+  "dependencies": {
+    "connect": "~3.6.6",
+    "serve-static": "~1.13.2"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "",
+  "license": "ISC"
+}

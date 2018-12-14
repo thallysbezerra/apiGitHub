@@ -6,8 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Consulta à API - GitHub</title>
     <link rel="stylesheet" href="css/global.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 </head>
 <body>
-    <h1>Vamo codar!</h1>
+
+    <div class="container">
+
+        <h1>Consulta de usuários do GitHub</h1>
+
+        <div class="search">
+            <input id="username" type="text" onfocusout="labelPosition()" />
+            <label for="username">Buscar usuário</label>
+            <button onclick="doSearch()">Buscar</button>
+        </div>
+
+        <section id="result">
+            <ul class="result__list"></ul>
+        </section>
+
+    </div>
+
+    <!-- <li class="result__user">
+        <div>
+            <img src="" alt="">
+            <p class="result__userName"></p>
+            <p class="result__userUser"></p>
+            <p class="result__userBio"></p>
+        </div>
+        <div>
+            <p class=="result__userFollowers"></p>
+            <p class=="result__userFollowing"></p>
+            <p class=="result__userEmail"></p>
+        </div>
+    </li> -->
+
+    <script src="js/scripts.js"></script>
 </body>
 </html>

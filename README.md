@@ -4,7 +4,8 @@
 - Ferramenta de build e automatização de tarefas: Gulp v4.0.0
 - Gerenciador de pacotes: NPM v6.4.1
 - Linguagem de marcação: HTML5
-- Pré-processador CSS: SASS/SCSS
+- Linguagem de programação: JavaScript
+- Pré-processador de folha de estilos: SASS/SCSS
 - Servidor: Node.js v9.11.1
 
 # Tecnologias e conceitos
@@ -18,7 +19,7 @@
 - CSS escrito em SASS, compilado de `.scss` para `.css`.
 - Font-family Roboto (Material) importada do Google Fonts via SASS.
 - Melhoria de performance com Gulp e plugins sass, concat e uglify.
-- Metodologia de escrita: B.E.M. (Block, Element, Modifier).
+- Metodologia de escrita: [B.E.M.](http://getbem.com/) (Block, Element, Modifier).
 
 **HTML**
 

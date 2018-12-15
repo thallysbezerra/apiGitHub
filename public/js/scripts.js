@@ -20,10 +20,11 @@ input.addEventListener("keyup", function(event) {
 
 // User serch function
 $("#doSearch").click(function() {
-	const username = document.querySelector("#username").value;
-	const result = document.querySelector("#result");
 
-	$("#result").children().remove();
+	const username = document.querySelector("#username").value;
+	const searchResult = document.querySelector("#searchResult");
+
+	$("#searchResult").children().remove();
 
 	axios
 		.get("https://api.github.com/search/users?q=" + username)
@@ -32,14 +33,14 @@ $("#doSearch").click(function() {
 			users.map(user => {
 				const username = `
 					<li>
-						<img src="${user.avatar_url}" alt="${user.login}">
+						<img src="${user.avatar_url}" alt="Avatar de ${user.login}">
 						<div>
 							<p id="${user.login}">${user.login}</p>
-							<span class="teste">Ver detalhes</span>
+							<span class="showUserDetails">Ver detalhes</span>
 						</div>
 					</li>
 				`;
-				result.innerHTML += username;
+				searchResult.innerHTML += username;
 				return user;
 			});
 		})
@@ -47,33 +48,60 @@ $("#doSearch").click(function() {
 			const username = `
 				<li class="result__noResult"><i class="fa fa-frown"></i>Não foram encontrados resultados para sua busca.</li>
 			`;
-			result.innerHTML += username;
+			searchResult.innerHTML += username;
 		});
 
-	teste();
+	showUserDetails();
 });
 
 // User details
-function teste(){
+function showUserDetails(){
 	setTimeout(function(){
+ 		$(".showUserDetails").click(function () {
 
-		$(".teste").click(function () {
-			var usuario = $(this).siblings().html();
-			console.log(usuario)
+			var userDetails = $(this).siblings().html();
+			const userContent = document.querySelector("#userContent");
+
+			console.log(userDetails)
 		
 			$(".modal").addClass("show");
 			$("body").addClass("blockScroll");
 			
 			axios
-			.get("https://api.github.com/users/" + usuario)
+			.get("https://api.github.com/users/" + userDetails)
 			.then(function(userResponse) {
 				console.log(userResponse.data);
-			})
-			.catch(function(error) {
-				console.log(error)
+				const userData = userResponse.data;
+				const userDetails = `
+					<img src="${userData.avatar_url}" alt="Avatar de ${userData.login}">
+					<div>
+						<label>User</label>
+						${userData.login}
+					</div>
+					<div>
+						<label>Name</label>
+						${userData.name}
+					</div>
+					<div>
+						<label>Bio</label>
+						${userData.bio}
+					</div>
+					<div>
+						<label>E-mail</label>
+						${userData.email}
+					</div>
+					<div>
+						<label>Followers</label>
+						${userData.followers}
+					</div>
+					<div>
+						<label>Following</label>
+						${userData.following}
+					</div>
+				`;
+				userContent.innerHTML += userDetails;
 			});
-
-		});
+ 		});
  
 	}, 1000);
  };
@@ -81,4 +109,5 @@ function teste(){
 function hideModalUserDetails() {
 	$(".modal").removeClass("show");
 	$("body").removeClass("blockScroll");
+	$("#userContent").children().remove();
 }

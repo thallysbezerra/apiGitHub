@@ -1,5 +1,30 @@
+///// Breakpoints
+@mixin breakpoint($point) {
+
+    @if $point == tabletPortrait {
+        @media (min-width: 768px)  { 
+            @content ;
+        }
+    }
+    
+    @else if $point == tabletLandscape {
+        @media (min-width: 1024px) { 
+            @content ;
+        }
+    }
+
+    @else if $point == desktop {
+        @media (min-width: 1280px) { 
+            @content ;
+        }
+    }
+
+}
+
+///// Fonts
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
+///// Variables
 $grey-light: #f2f2f2;
 $grey: #ccc;
 $purple: #a24aae;
@@ -7,6 +32,18 @@ $white: #fff;
 
 $transition: .2s ease-in-out;
 
+///// Layout
+.container {
+    padding: 0 20px;
+
+    @include breakpoint(desktop) {
+        margin: 0 auto;
+        max-width: 1280px;
+        padding: 0;
+    }
+}
+
+///// Style
 body {
     background-color: $grey-light;
     font-family: 'Roboto', sans-serif;
@@ -14,7 +51,6 @@ body {
     .search {
         background-color: $white;
         margin-top: 50px;
-        max-width: 728px;
         position: relative;
 
         input {
@@ -63,10 +99,24 @@ body {
         button {
             background-color: $purple;
             border: none;
-            color: $white;
             float: right;
             height: 50px;
             width: 50px;
+
+            &:hover {
+                cursor: pointer;
+
+                i {
+                    opacity: 1;
+                }
+            }
+
+            i {
+                color: $white;
+                font-size: 20px;
+                opacity: .7;
+                transition: opacity $transition;
+            }
         }
     }
 }

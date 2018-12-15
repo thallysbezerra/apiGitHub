@@ -19,7 +19,7 @@ input.addEventListener("keyup", function(event) {
 });
 
 // User serch function
-function doSearch() {
+$("#doSearch").click(function() {
 	const username = document.querySelector("#username").value;
 	const result = document.querySelector("#result");
 
@@ -27,16 +27,15 @@ function doSearch() {
 
 	axios
 		.get("https://api.github.com/search/users?q=" + username)
-		.then(function(response) {
-			const users = response.data.items;
-			console.log(response.data.items);
+		.then(function(searchResponse) {
+			const users = searchResponse.data.items;
 			users.map(user => {
 				const username = `
 					<li>
 						<img src="${user.avatar_url}" alt="${user.login}">
 						<div>
-							<p>${user.login}</p>
-							<span onclick="showUserDetails()">Ver detalhes</span>
+							<p id="${user.login}">${user.login}</p>
+							<span class="teste">Ver detalhes</span>
 						</div>
 					</li>
 				`;
@@ -50,14 +49,36 @@ function doSearch() {
 			`;
 			result.innerHTML += username;
 		});
-}
 
-function showUserDetails() {
-	$(".modal").addClass("show");
-	$("body").addClass("blockScroll");
-}
+	teste();
+});
 
-function hideUserDetails() {
+// User details
+function teste(){
+	setTimeout(function(){
+
+		$(".teste").click(function () {
+			var usuario = $(this).siblings().html();
+			console.log(usuario)
+		
+			$(".modal").addClass("show");
+			$("body").addClass("blockScroll");
+			
+			axios
+			.get("https://api.github.com/users/" + usuario)
+			.then(function(userResponse) {
+				console.log(userResponse.data);
+			})
+			.catch(function(error) {
+				console.log(error)
+			});
+
+		});
+ 
+	}, 1000);
+ };
+
+function hideModalUserDetails() {
 	$(".modal").removeClass("show");
 	$("body").removeClass("blockScroll");
 }

@@ -25,7 +25,7 @@
         <div class="search">
             <input id="username" type="text" onfocusout="labelPosition()" />
             <label for="username">Buscar usuário</label>
-            <button onclick="doSearch()"><i class="fa fa-search"></i></button>
+            <button id="doSearch" onclick="doSearch()"><i class="fa fa-search"></i></button>
         </div>
 
         <section>
@@ -34,19 +34,9 @@
 
     </div>
 
-    <!-- <li class="result__user">
-        <div>
-            <img src="" alt="">
-            <p class="result__userName"></p>
-            <p class="result__userUser"></p>
-            <p class="result__userBio"></p>
-        </div>
-        <div>
-            <p class=="result__userFollowers"></p>
-            <p class=="result__userFollowing"></p>
-            <p class=="result__userEmail"></p>
-        </div>
-    </li> -->
+    <div class="modal modal__usuario">
+        <span class="modal__close" onclick="hideUserDetails()"><i class="fa fa-times"></i></span>
+    </div>
 
     <script src="js/scripts.js"></script>
 </body>

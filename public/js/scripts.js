@@ -11,6 +11,8 @@ function doSearch() {
 	const username = document.querySelector("#username").value;
 	const result = document.querySelector("#result");
 
+	$("#result").children().remove();
+
 	axios
 		.get("https://api.github.com/search/users?q=" + username)
 		.then(function(response) {
@@ -28,6 +30,9 @@ function doSearch() {
 			});
 		})
 		.catch(function(error) {
-			console.log(error);
+			const username = `
+				<li class="result__noResult"><i class="fa fa-frown"></i>Não foram encontrados resultados para sua busca.</li>
+			`;
+			result.innerHTML += username;
 		});
 }

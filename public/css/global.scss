@@ -119,4 +119,25 @@ body {
             }
         }
     }
+
+    .result__list {
+        list-style: none;
+        padding: 0;
+        
+        .result__noResult {
+            align-items: center;
+            background-color: $white;
+            border: 1px solid $purple;
+            color: $purple;
+            display: flex;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 20px;
+
+            i {
+                font-size: 50px;
+                margin-right: 20px;
+            }
+        }
+    }
 }

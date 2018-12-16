@@ -18,7 +18,7 @@ input.addEventListener("keyup", function(event) {
 	}
 });
 
-// User serch function
+// User search function
 $("#doSearch").click(function() {
 
 	const username = document.querySelector("#username").value;
@@ -70,30 +70,30 @@ function showUserDetails(){
 			.then(function(userResponse) {
 				const userData = userResponse.data;
 				const userDetails = `
-					<img src="${userData.avatar_url}" alt="Avatar de ${userData.login}">
 					<div>
-						<label>User</label>
-						${ userData.login }
+						<img src="${userData.avatar_url}" alt="Avatar de ${userData.login}">
+						<div>
+							<label>User</label>
+							${ userData.login }
+							<label>Name</label>
+							${ userData.name ? userData.name : 'Nome indisponível' }
+						</div>
 					</div>
 					<div>
-						<label>Name</label>
-						${ userData.name ? userData.name : 'Nome indisponível' }
-					</div>
-					<div>
-						<label>Bio</label>
-						${ userData.bio ? userData.bio : 'Bio indisponível' }
+						<div>
+							<label>Seguidores</label>
+							<span>${ userData.followers }</span>
+						</div>
+						<div>
+							<label>Seguindo</label>
+							<span>${ userData.following }</span>
+						</div>
 					</div>
 					<div>
 						<label>E-mail</label>
 						${ userData.email ? userData.email : 'E-mail indisponível' }
-					</div>
-					<div>
-						<label>Seguidores</label>
-						${ userData.followers }
-					</div>
-					<div>
-						<label>Seguindo</label>
-						${ userData.following }
+						<label>Bio</label>
+						${ userData.bio ? userData.bio : 'Bio indisponível' }
 					</div>
 				`;
 				userContent.innerHTML += userDetails;
@@ -105,6 +105,7 @@ function showUserDetails(){
 	}, 1000);
 };
 
+// Close modal
 $("#modalClose").click(function() {
 	$(".modal").removeClass("show");
 	$("body").removeClass("blockScroll");

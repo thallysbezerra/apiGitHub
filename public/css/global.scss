@@ -25,6 +25,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 ///// Variables
+$black: #000;
 $grey-light: #f2f2f2;
 $grey: #ccc;
 $purple: #a24aae;
@@ -208,6 +209,10 @@ body {
         top: 0;
     }
 
+    & > div {
+        position: relative;
+    }
+
     .modal__close {
         align-items: center;
         border: 1px solid $grey;
@@ -219,6 +224,7 @@ body {
         top: 20px;
         transition: border-color $transition;
         width: 50px;
+        z-index: 1;
 
         &:hover {
             border-color: $purple;
@@ -232,34 +238,68 @@ body {
     }
 
     .modal__userContent {
-        align-items: center;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        height: 100%;
-        justify-content: center;
         padding: 20px;
-        width: 100%;
+        position: relative;
 
         img {
             border-radius: 50%;
-            height: 250px;
-            margin-bottom: 30px;
-            width: 250px;
+            height: 75px;
+            margin-right: 20px;
+            width: 75px;
         }
 
-        div {
-            font-size: 18px;
-            text-align: center;
-            width: calc(100% - 40px);
+        & > div {
+            display: flex;
+            flex-direction: row;
+            font-size: 14px;
+            margin-bottom: 10px;
+
+            &:nth-of-type(1) {
+                margin-bottom: 20px;
+
+                div {
+                    flex-direction: column;
+                }
+            }
+                
+            &:nth-of-type(2) {
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    margin-right: 20px;
+
+                    label {
+                        margin-top: 4px;
+                    }
+
+                    span {
+                        background-color: $black;
+                        border-radius: 5px;
+                        color: $white;
+                        margin-left: 5px;
+                        padding: 2px 5px;
+                    }
+                }
+            }
+
+            &:nth-of-type(3) {
+                flex-direction: column;
+            }
 
             label {
                 color: #a24aae;
                 display: block;
-                font-size: 14px;
+                font-size: 12px;
                 font-weight: bold;
-                margin: 20px 0 5px;
+                margin: 10px 0 0;
                 text-transform: uppercase;
+
+                &:nth-of-type(1) {
+                    margin-top: 0;
+                }
             }
         }
     }

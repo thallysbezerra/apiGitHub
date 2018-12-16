@@ -147,7 +147,7 @@ body {
 
     li {
         background-color: $white;
-        border: 1px solid $grey;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
         display: flex;
         padding: 20px;
 
@@ -233,6 +233,7 @@ body {
 
     .modal__userContent {
         align-items: center;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -250,7 +251,7 @@ body {
         div {
             font-size: 18px;
             text-align: center;
-            width: 100%;
+            width: calc(100% - 40px);
 
             label {
                 color: #a24aae;

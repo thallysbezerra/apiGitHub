@@ -12,10 +12,10 @@ function labelPosition() {
 var input = document.querySelector("#username");
 
 input.addEventListener("keyup", function(event) {
-  event.preventDefault();
-  if (event.keyCode === 13) {
-    document.querySelector("#doSearch").click();
-  }
+	event.preventDefault();
+	if (event.keyCode === 13) {
+		document.querySelector("#doSearch").click();
+	}
 });
 
 // User serch function
@@ -59,55 +59,54 @@ function showUserDetails(){
 	setTimeout(function(){
  		$(".showUserDetails").click(function () {
 
-			var userDetails = $(this).siblings().html();
+			let userLogin = $(this).siblings().html();
 			const userContent = document.querySelector("#userContent");
-
-			console.log(userDetails)
 		
 			$(".modal").addClass("show");
 			$("body").addClass("blockScroll");
 			
 			axios
-			.get("https://api.github.com/users/" + userDetails)
+			.get("https://api.github.com/users/" + userLogin)
 			.then(function(userResponse) {
-				console.log(userResponse.data);
 				const userData = userResponse.data;
 				const userDetails = `
 					<img src="${userData.avatar_url}" alt="Avatar de ${userData.login}">
 					<div>
 						<label>User</label>
-						${userData.login}
+						${ userData.login }
 					</div>
 					<div>
 						<label>Name</label>
-						${userData.name}
+						${ userData.name ? userData.name : 'Nome indisponível' }
 					</div>
 					<div>
 						<label>Bio</label>
-						${userData.bio}
+						${ userData.bio ? userData.bio : 'Bio indisponível' }
 					</div>
 					<div>
 						<label>E-mail</label>
-						${userData.email}
+						${ userData.email ? userData.email : 'E-mail indisponível' }
 					</div>
 					<div>
-						<label>Followers</label>
-						${userData.followers}
+						<label>Seguidores</label>
+						${ userData.followers }
 					</div>
 					<div>
-						<label>Following</label>
-						${userData.following}
+						<label>Seguindo</label>
+						${ userData.following }
 					</div>
 				`;
 				userContent.innerHTML += userDetails;
 			});
- 		});
+		 });
+		 
+		 $(".modal").focus();
  
 	}, 1000);
- };
+};
 
-function hideModalUserDetails() {
+$("#modalClose").click(function() {
 	$(".modal").removeClass("show");
 	$("body").removeClass("blockScroll");
 	$("#userContent").children().remove();
-}
+});

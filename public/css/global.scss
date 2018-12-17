@@ -287,10 +287,25 @@ body {
         list-style: none;
         padding: 0;
 
+        @include breakpoint(tabletPortrait) {
+            grid-template-columns: 1fr 1fr;
+        }
+    
+        @include breakpoint(tabletLandscape) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    
+        @include breakpoint(desktop) {
+            grid-template-columns: 1fr 1fr 1fr 1fr
+        }
+
         li {
             background-color: $white;
             box-shadow: $box-shadow;
+            display: flex;
+            flex-direction: column;
             font-size: 14px;
+            justify-content: space-between;
 
             div {
                 padding: 10px;

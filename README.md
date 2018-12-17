@@ -22,6 +22,7 @@
 - CSS Flexbox para estruturas internas.
 - CSS Grid para estruturas externas.
 - Font-family Roboto (Material) importada do Google Fonts via SASS.
+- Ícones usando @font-face gerados pelo [Icomoon](https://icomoon.io/) somente com o necessário, focando em performance.
 - Melhoria de performance com Gulp e plugins sass, concat e uglify.
 - Metodologia de escrita: [B.E.M.](http://getbem.com/) (Block, Element, Modifier).
 - Uso de seletores avançados e pseudo-classes.

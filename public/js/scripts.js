@@ -54,7 +54,7 @@ $("#doSearch").click(function() {
 		})
 		.catch(function(error) {
 			const username = `
-				<li class="result__noResult"><i class="fa fa-frown"></i>Não foram encontrados resultados para sua busca.</li>
+				<li class="result__noResult"><i class="icon-frown"></i>Não foram encontrados resultados para sua busca.</li>
 			`;
 			searchResult.innerHTML += username;
 		});

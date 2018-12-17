@@ -8,12 +8,12 @@
 
     <title>GitHub API - Users search</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/global.css">
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
 
 </head>
 <body>
@@ -25,7 +25,7 @@
         <div class="search">
             <input id="username" type="text" onfocusout="labelPosition()" />
             <label for="username">Find user</label>
-            <button id="doSearch"><i class="fa fa-search"></i></button>
+            <button id="doSearch"><i class="icon-search"></i></button>
         </div>
 
         <section>
@@ -36,7 +36,7 @@
 
     <div class="modal modal__user">
         <div class="container">
-            <span id="modalClose" class="modal__close"><i class="fa fa-times"></i></span>
+            <span id="modalClose" class="modal__close"><i class="icon-close"></i></span>
             <div id="userContent" class="modal__userContent"></div>
             <h2>Repositories</h2>
             <ul id="userRepoContent" class="modal__userRepoContent"></ul>

@@ -31,6 +31,7 @@ $grey: #ccc;
 $purple: #a24aae;
 $white: #fff;
 
+$box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
 $transition: .2s ease-in-out;
 
 ///// Layout
@@ -148,7 +149,7 @@ body {
 
     li {
         background-color: $white;
-        box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+        box-shadow: $box-shadow;
         display: flex;
         padding: 20px;
 
@@ -186,6 +187,7 @@ body {
         display: flex;
         font-size: 14px;
         font-weight: bold;
+        max-width: 1280px;
         padding: 20px;
         width: calc(100vw - 40px);
 
@@ -198,8 +200,9 @@ body {
 
 ///// Modal
 .modal {
-    background-color: $white;
+    background-color: $grey-light;
     height: 100vh;
+    overflow-y: scroll;
     position: fixed;
     top: 100%;
     transition: top $transition;
@@ -215,6 +218,7 @@ body {
 
     .modal__close {
         align-items: center;
+        background-color: $white;
         border: 1px solid $grey;
         display: flex;
         height: 50px;
@@ -237,70 +241,80 @@ body {
         }
     }
 
+    label {
+        color: #a24aae;
+        display: block;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 15px 0 5px;
+        text-transform: uppercase;
+
+        &:nth-of-type(1) {
+            margin-top: 0;
+        }
+    }
+
     .modal__userContent {
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        padding: 20px;
+        padding: 20px 0 0;
         position: relative;
 
         img {
             border-radius: 50%;
-            height: 75px;
+            border: 10px solid $purple;
+            box-shadow: $box-shadow;
+            height: 125px;
             margin-right: 20px;
-            width: 75px;
+            width: 125px;
         }
 
-        & > div {
+        div {
+            background-color: $white;
+            box-shadow: $box-shadow;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             font-size: 14px;
-            margin-bottom: 10px;
+            margin: 20px 0 0;
+            padding: 10px;
+        }
+    }
 
-            &:nth-of-type(1) {
-                margin-bottom: 20px;
+    .modal__userRepoContent {
+        display: grid;
+        grid-gap: 20px;
+        list-style: none;
+        padding: 0;
 
-                div {
-                    flex-direction: column;
-                }
-            }
-                
-            &:nth-of-type(2) {
-                div {
-                    display: flex;
-                    flex-direction: row;
-                    margin-right: 20px;
+        li {
+            background-color: $white;
+            box-shadow: $box-shadow;
+            font-size: 14px;
+
+            div {
+                padding: 10px;
+
+                &:nth-of-type(2) {
+                    background-color: #a24aae;
+                    color: $white;
 
                     label {
-                        margin-top: 4px;
+                        color: $white;
+                        display: inline-block;
+                        margin: 0 5px 0 0;
                     }
 
                     span {
-                        background-color: $black;
+                        background-color: $white;
                         border-radius: 5px;
-                        color: $white;
-                        margin-left: 5px;
+                        color: $black;;
+                        margin-right: 20px;
                         padding: 2px 5px;
                     }
                 }
             }
-
-            &:nth-of-type(3) {
-                flex-direction: column;
-            }
-
-            label {
-                color: #a24aae;
-                display: block;
-                font-size: 12px;
-                font-weight: bold;
-                margin: 10px 0 0;
-                text-transform: uppercase;
-
-                &:nth-of-type(1) {
-                    margin-top: 0;
-                }
-            }
+            
         }
     }
 }

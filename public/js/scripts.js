@@ -18,6 +18,14 @@ input.addEventListener("keyup", function(event) {
 	}
 });
 
+// Close modal
+$("#modalClose").click(function() {
+	$(".modal").removeClass("show");
+	$("body").removeClass("blockScroll");
+	$("#userContent").children().remove();
+	$("#userRepoContent").children().remove();
+});
+
 // User search function
 $("#doSearch").click(function() {
 
@@ -36,7 +44,7 @@ $("#doSearch").click(function() {
 						<img src="${user.avatar_url}" alt="Avatar de ${user.login}">
 						<div>
 							<p id="${user.login}">${user.login}</p>
-							<span class="showUserDetails">Ver detalhes</span>
+							<span class="showUserDetails">See details</span>
 						</div>
 					</li>
 				`;
@@ -52,62 +60,73 @@ $("#doSearch").click(function() {
 		});
 
 	showUserDetails();
+	// showUserRepoDetails();
 });
 
-// User details
+// User details function
 function showUserDetails(){
 	setTimeout(function(){
  		$(".showUserDetails").click(function () {
 
 			let userLogin = $(this).siblings().html();
 			const userContent = document.querySelector("#userContent");
+			const userRepoContent = document.querySelector("#userRepoContent");
 		
 			$(".modal").addClass("show");
 			$("body").addClass("blockScroll");
 			
 			axios
-			.get("https://api.github.com/users/" + userLogin)
-			.then(function(userResponse) {
-				const userData = userResponse.data;
-				const userDetails = `
-					<div>
+				.get("https://api.github.com/users/" + userLogin)
+				.then(function(userResponse) {
+					const userData = userResponse.data;
+					const userDetails = `
 						<img src="${userData.avatar_url}" alt="Avatar de ${userData.login}">
 						<div>
 							<label>User</label>
 							${ userData.login }
 							<label>Name</label>
-							${ userData.name ? userData.name : 'Nome indisponível' }
+							${ userData.name ? userData.name : 'Name not available' }
+							<label>Followers</label>
+							${ userData.followers }
+							<label>Following</label>
+							${ userData.following }
+							<label>E-mail</label>
+							${ userData.email ? userData.email : 'E-mail not available' }
+							<label>Bio</label>
+							${ userData.bio ? userData.bio : 'Bio not available' }
 						</div>
-					</div>
-					<div>
-						<div>
-							<label>Seguidores</label>
-							<span>${ userData.followers }</span>
-						</div>
-						<div>
-							<label>Seguindo</label>
-							<span>${ userData.following }</span>
-						</div>
-					</div>
-					<div>
-						<label>E-mail</label>
-						${ userData.email ? userData.email : 'E-mail indisponível' }
-						<label>Bio</label>
-						${ userData.bio ? userData.bio : 'Bio indisponível' }
-					</div>
-				`;
-				userContent.innerHTML += userDetails;
-			});
+					`;
+					userContent.innerHTML += userDetails;
+				});
+
+			axios
+				.get("https://api.github.com/users/" + userLogin + "/repos")
+				.then(function(userRepoResponse) {
+					const usersRepo = userRepoResponse.data;
+					usersRepo.map(userRepo => {
+						const userRepoDatails = `
+							<li>
+								<div>
+									<label>Name</label>
+									<a href="${userRepo.html_url}" target="_blank">${userRepo.name}</a>
+									<label>Description</label>
+									${ userRepo.description ? userRepo.description : 'Description not available' }
+								</div>
+								<div>
+									<label>Stars</label>
+									<span>${userRepo.stargazers_count}</span>
+									<label>Language</label>
+									<span>${userRepo.language}</span>
+								</div>
+							</li>
+						`;
+						userRepoContent.innerHTML += userRepoDatails;
+						return userRepo;
+					})
+				});
 		 });
 		 
 		 $(".modal").focus();
  
 	}, 1000);
 };
-
-// Close modal
-$("#modalClose").click(function() {
-	$(".modal").removeClass("show");
-	$("body").removeClass("blockScroll");
-	$("#userContent").children().remove();
-});

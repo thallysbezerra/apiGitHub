@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Consulta à API - GitHub</title>
+    <title>GitHub API - Users search</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -20,11 +20,11 @@
 
     <div class="container">
 
-        <h1>Consulta de usuários do GitHub</h1>
+        <h1>GitHub users search</h1>
 
         <div class="search">
             <input id="username" type="text" onfocusout="labelPosition()" />
-            <label for="username">Buscar usuário</label>
+            <label for="username">Find user</label>
             <button id="doSearch"><i class="fa fa-search"></i></button>
         </div>
 
@@ -38,6 +38,8 @@
         <div class="container">
             <span id="modalClose" class="modal__close"><i class="fa fa-times"></i></span>
             <div id="userContent" class="modal__userContent"></div>
+            <h2>Repositories</h2>
+            <ul id="userRepoContent" class="modal__userRepoContent"></ul>
         </div>
     </div>
 

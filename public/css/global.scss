@@ -1,3 +1,11 @@
+///// Animations
+@keyframes gelatine {
+    from, to { transform: scale(1, 1); }
+    25% { transform: scale(0.9, 1.1); }
+    50% { transform: scale(1.1, 0.9); }
+    75% { transform: scale(0.95, 1.05); }
+}
+
 ///// Breakpoints
 @mixin breakpoint($point) {
 
@@ -112,18 +120,13 @@ body {
         width: 50px;
 
         &:hover {
+            animation: gelatine .5s;
             cursor: pointer;
-
-            i {
-                opacity: 1;
-            }
         }
 
         i {
             color: $white;
             font-size: 20px;
-            opacity: .7;
-            transition: opacity $transition;
         }
     }
 }
@@ -242,7 +245,7 @@ body {
     }
 
     label {
-        color: #a24aae;
+        color: $purple;
         display: block;
         font-size: 12px;
         font-weight: bold;

@@ -1,6 +1,8 @@
-// Label positioning based on Search InputText behavior
+///// Label positioning based on Search InputText behavior
 function labelPosition() {
+
 	let label = document.querySelector("#username").value;
+
 	if (label != "") {
 		$("#username").addClass("fixed");
 	} else {
@@ -8,7 +10,7 @@ function labelPosition() {
 	}
 }
 
-// Pressing Enter on Search InputText, call user search function
+///// Pressing Enter on Search InputText, call user search function
 var input = document.querySelector("#username");
 
 input.addEventListener("keyup", function(event) {
@@ -18,7 +20,7 @@ input.addEventListener("keyup", function(event) {
 	}
 });
 
-// Close modal
+///// Close modal
 $("#modalClose").click(function() {
 	$(".modal").removeClass("show");
 	$("body").removeClass("blockScroll");
@@ -26,7 +28,7 @@ $("#modalClose").click(function() {
 	$("#userRepoContent").children().remove();
 });
 
-// User search function
+///// User search function
 $("#doSearch").click(function() {
 
 	const username = document.querySelector("#username").value;
@@ -60,10 +62,9 @@ $("#doSearch").click(function() {
 		});
 
 	showUserDetails();
-	// showUserRepoDetails();
 });
 
-// User details function
+///// User details function
 function showUserDetails(){
 	setTimeout(function(){
  		$(".showUserDetails").click(function () {
@@ -103,7 +104,19 @@ function showUserDetails(){
 				.get("https://api.github.com/users/" + userLogin + "/repos")
 				.then(function(userRepoResponse) {
 					const usersRepo = userRepoResponse.data;
-					usersRepo.map(userRepo => {
+
+					function compare(a,b) {
+						if (a.stargazers_count < b.stargazers_count)
+						  return -1;
+						if (a.stargazers_count > b.stargazers_count)
+						  return 1;
+						return 0;
+					}
+
+					usersRepo.sort(compare);
+					usersRepo.reverse();
+
+					usersRepo.sort(userRepo => {
 						const userRepoDatails = `
 							<li>
 								<div>

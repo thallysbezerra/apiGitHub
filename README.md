@@ -34,9 +34,14 @@
 **JAVASCRIPT**
 
 - Arquivo externo, com blocos de funções.
+- Dados de usuário e repositórios trazidos em uma modal, mantendo ideia de SPA.
 - JavaScript puro e jQuery.
-- Map em array para retorno de busca de usuários.
+- Map em array de busca de usuários para retorno de resultado.
+- Posicionamento de label de campo de busca com base em comportamento de input text.
+- Reordenação de elementos manipulando DOM.
 - Sem uso de Frameworks e Libs para arquitetura do projeto.
+- Sort em repositórios de usuários para ordenação decrescente por estrelas.
+- Uso de keyCode (Enter), para melhorar experiência do usuário ao interagir com busca.
 - Validações com ternários para verificação de dados inexistentes ou não disponíveis.
 
 # Instruções para rodar o projeto

@@ -257,6 +257,33 @@ body {
         }
     }
 
+    .modal__sortBy span {
+        background-color: $white;
+        border: 1px solid $grey;
+        color: $purple;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 10px;
+        text-transform: uppercase;
+        transition: border-color $transition;
+
+        &:hover {
+            border-color: $purple;
+            cursor: pointer;
+        }
+
+        &.active {
+            background-color: $purple;
+            border-color: $purple;
+            color: white;
+            pointer-events: none;
+
+            &:hover {
+                cursor: default;
+            }
+        }
+    }
+
     .modal__userContent {
         box-sizing: border-box;
         display: flex;

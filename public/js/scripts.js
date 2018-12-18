@@ -2,7 +2,7 @@
 function labelPosition() {
 
 	let label = document.querySelector("#username").value;
-
+	
 	if (label != "") {
 		$("#username").addClass("fixed");
 	} else {
@@ -26,6 +26,31 @@ $("#modalClose").click(function() {
 	$("body").removeClass("blockScroll");
 	$("#userContent").children().remove();
 	$("#userRepoContent").children().remove();
+});
+
+///// Order by stars
+$("#lessToMore").click(function() {
+	$(this).toggleClass("active");
+	$(this).siblings().toggleClass("active");
+	$("#userRepoContent li").sort(function(a, b) {
+		return parseInt(b.id) - parseInt(a.id);
+	}).each(function() {
+		var elem = $(this);
+		elem.remove();
+		$(elem).appendTo("#userRepoContent");
+	});
+});
+
+$("#moreToLess").click(function() {
+	$(this).toggleClass("active");
+	$(this).siblings().toggleClass("active");
+	$("#userRepoContent li").sort(function(a, b) {
+		return parseInt(a.id) - parseInt(b.id);
+	}).each(function() {
+		var elem = $(this);
+		elem.remove();
+		$(elem).appendTo("#userRepoContent");
+	});
 });
 
 ///// User search function
@@ -116,9 +141,11 @@ function showUserDetails(){
 					usersRepo.sort(compare);
 					usersRepo.reverse();
 
+					var count = 0
+					
 					usersRepo.sort(userRepo => {
 						const userRepoDatails = `
-							<li>
+							<li id="${count++}">
 								<div>
 									<label>Name</label>
 									<a href="${userRepo.html_url}" target="_blank">${userRepo.name}</a>
